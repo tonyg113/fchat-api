@@ -1,0 +1,25 @@
+version: "2"
+services:
+  node-server:
+    container_name: fchat-api
+    build: .
+    user: "node"
+    working_dir: /home/node/fchat-api
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3003:3003"
+    expose:
+      - "3003"
+    command: "npm start"
+    links:
+      - mongo:mongo
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./:/home/node/data
+    ports:
+      - "27017:27017"
+    command: --smallfiles
