@@ -16,14 +16,14 @@ services:
     volumes:
       - .:/home/node/fchat-api
     command: "npm start"
-    depends_on:
-      - mongo
+    links:
+      - mongo:mongo
   mongo:
     container_name: mongodb
     image: mongo:latest
     restart: always
     volumes:
-      - ./data:/home/node/data
+      - ./data:/data
     ports:
       - "27017:27017"
     command: --smallfiles
