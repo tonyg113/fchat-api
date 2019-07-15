@@ -19,7 +19,7 @@ services:
     image: mongo:latest
     restart: always
     volumes:
-      - ./:/home/node/data
+      - ./data:/home/node/data
     ports:
       - "27017:27017"
     command: --smallfiles
