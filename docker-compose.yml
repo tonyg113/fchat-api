@@ -16,8 +16,8 @@ services:
     volumes:
       - .:/home/node/fchat-api
     command: "npm start"
-    links:
-      - mongo:mongo
+    depends_on:
+      - mongo
   mongo:
     container_name: mongodb
     image: mongo:latest
