@@ -2,24 +2,28 @@ version: "2"
 services:
   node-server:
     container_name: fchat-api
+    tty: true
     build: .
+    # image: node
     user: "node"
     working_dir: /home/node/fchat-api
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=dev
     ports:
       - "3003:3003"
     expose:
       - "3003"
+    volumes:
+      - .:/home/node/fchat-api
     command: "npm start"
-    # links:
-    #   - mongo:mongo
-  # mongo:
-  #   container_name: mongodb
-  #   image: mongo:latest
-  #   restart: always
-  #   volumes:
-  #     - ./data:/home/node/data
-  #   ports:
-  #     - "27017:27017"
-  #   command: --smallfiles
+    links:
+      - mongo:mongo
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./data:/home/node/data
+    ports:
+      - "27017:27017"
+    command: --smallfiles
