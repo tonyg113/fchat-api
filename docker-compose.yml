@@ -12,14 +12,14 @@ services:
     expose:
       - "3003"
     command: "npm start"
-    links:
-      - mongo:mongo
-  mongo:
-    container_name: mongodb
-    image: mongo:latest
-    restart: always
-    volumes:
-      - ./data:/home/node/data
-    ports:
-      - "27017:27017"
-    command: --smallfiles
+    # links:
+    #   - mongo:mongo
+  # mongo:
+  #   container_name: mongodb
+  #   image: mongo:latest
+  #   restart: always
+  #   volumes:
+  #     - ./data:/home/node/data
+  #   ports:
+  #     - "27017:27017"
+  #   command: --smallfiles
